@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c3fb3b3daa9b242960d50ae581934f, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  sound:
+  - name: Bounce
+    clip: {fileID: 8300000, guid: 568f96c018220ea4eb123968e9a7b792, type: 3}
+    loop: 0
+    Volume: 0
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 5f3a704d9a42cfb4d84b21b1b9c1fdc5, type: 3}
+    loop: 0
+    Volume: 0.4
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 5f3a704d9a42cfb4d84b21b1b9c1fdc5, type: 3}
+    loop: 0
+    Volume: 0.4
+  - name: BackGround_1
+    clip: {fileID: 8300000, guid: 5d4a674d91edd784c879dc83f48c41b8, type: 3}
+    loop: 1
+    Volume: 0.8
+  - name: BackGround_2
+    clip: {fileID: 8300000, guid: 41398986ed8a54d47840cc4fdc12b6f5, type: 3}
+    loop: 1
+    Volume: 0.8
