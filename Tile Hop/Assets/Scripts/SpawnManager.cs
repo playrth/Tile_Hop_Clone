@@ -14,10 +14,10 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     int OpenPoolSize = 5;
 
-    //[SerializeField]
-    //GameObject PlanePrefab;
-    //public Queue<GameObject> ClosedPlanePool = new Queue<GameObject>();
-    //public Queue<GameObject> OpenPlanePool = new Queue<GameObject>();
+    [SerializeField]
+    GameObject PlanePrefab;
+    public Queue<GameObject> ClosedPlanePool = new Queue<GameObject>();
+    public Queue<GameObject> OpenPlanePool = new Queue<GameObject>();
 
 
     public static SpawnManager instance;
@@ -41,14 +41,14 @@ public class SpawnManager : MonoBehaviour
             o.SetActive(false);
             ClosedTilePool.Enqueue(o);
         }
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    GameObject o = Instantiate(PlanePrefab, Vector3.zero, Quaternion.identity);
-        //    o.SetActive(false);
-        //    ClosedPlanePool.Enqueue(o);
-        //}
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject o = Instantiate(PlanePrefab, Vector3.zero, Quaternion.identity);
+            o.SetActive(false);
+            ClosedPlanePool.Enqueue(o);
+        }
 
-        
+
         for (int i = 0; i < OpenPoolSize; i++)
         {
             GameObject o = ClosedTilePool.Dequeue();
@@ -58,17 +58,17 @@ public class SpawnManager : MonoBehaviour
             x = Random.Range(-3.5f, 3.5f);
             OpenTilePool.Enqueue(o);
         }
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    GameObject o = ClosedPlanePool.Dequeue();
-        //    o.SetActive(true);
-        //    o.transform.position = new Vector3(0, -3.5f, pz);
-        //    pz += 50f;    
-        //    OpenPlanePool.Enqueue(o);
-        //}
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject o = ClosedPlanePool.Dequeue();
+            o.SetActive(true);
+            o.transform.position = new Vector3(0, -3.5f, pz);
+            pz += 50f;
+            OpenPlanePool.Enqueue(o);
+        }
     }
 
-    public void Spawn()
+    public void SpawnTile()
     {
         GameObject o = ClosedTilePool.Dequeue();
         o.SetActive(true);
@@ -76,5 +76,13 @@ public class SpawnManager : MonoBehaviour
         z += (3.5f * Random.Range(1, 4));
         x = Random.Range(-3.5f, 3.5f);
         OpenTilePool.Enqueue(o);
+    }
+    public void SpawnPlane()
+    {
+        GameObject o = ClosedPlanePool.Dequeue();
+        o.SetActive(true);
+        o.transform.position = new Vector3(0, -3.5f, pz);
+        pz += 50f;
+        OpenPlanePool.Enqueue(o);
     }
 }

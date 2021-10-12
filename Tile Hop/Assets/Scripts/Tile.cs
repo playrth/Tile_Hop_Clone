@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     {
         if(other.transform.tag== "SpawnEnd")
         {
-            SpawnManager.instance.Spawn();
+            SpawnManager.instance.SpawnTile();
             this.gameObject.SetActive(false);
         }
     }
