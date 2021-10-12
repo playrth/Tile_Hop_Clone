@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     bool Gameover = false;
 
     [SerializeField]
+    GameObject CameraTarget;
+
+    [SerializeField]
     TMP_Text ScoreText;
 
     [SerializeField]
@@ -46,11 +49,13 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         AudioSystem.Singleton.Sound = MusicScriptableobject.Sound;
+        CameraTarget.transform.position = new Vector3(0, 0, this.transform.position.z);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        
         AudioSystem.Singleton.PlaySound($"BackGround_{Random.Range(1,3)}", this.gameObject);
         GameOverDisplay.SetActive(false);
         //AdManager.instance.RequestInterstitial();
@@ -61,7 +66,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Gameover==false)
+        CameraTarget.transform.position = new Vector3(0, 0, this.transform.position.z);
+        if (Gameover==false)
         {
             if (Touchscreen.current.primaryTouch.press.isPressed)
             {

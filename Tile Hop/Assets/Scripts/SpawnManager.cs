@@ -55,7 +55,7 @@ public class SpawnManager : MonoBehaviour
             o.SetActive(true);     
             o.transform.position = new Vector3(x,0,z);
             z += (3.5f * Random.Range(1, 4));
-            x = Random.Range(-3.5f, 3.5f);
+            x = Random.Range(-2f, 2f);
             OpenTilePool.Enqueue(o);
         }
         for (int i = 0; i < 2; i++)
@@ -74,7 +74,7 @@ public class SpawnManager : MonoBehaviour
         o.SetActive(true);
         o.transform.position = new Vector3(x, 0, z);
         z += (3.5f * Random.Range(1, 4));
-        x = Random.Range(-3.5f, 3.5f);
+        x = Random.Range(-2f, 2f);
         OpenTilePool.Enqueue(o);
     }
     public void SpawnPlane()
