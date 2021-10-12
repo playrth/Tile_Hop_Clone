@@ -25,13 +25,13 @@ public class AdManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MobileAds.Initialize(InitializationStatus => { }); 
+        MobileAds.Initialize("ca-app-pub-3229095087295045~5306439717"); 
     }
 
 
     public void RequestInterstitial()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        string adUnitId = "ca-app-pub-3229095087295045/4474566162";
         if(this.interstitial!=null)
         {
             this.interstitial.Destroy();
