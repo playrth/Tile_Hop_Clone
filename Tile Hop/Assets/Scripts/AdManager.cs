@@ -1,63 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
-using System;
+using UnityEngine.Advertisements;
 
-public class AdManager : MonoBehaviour
+public class AdManager : MonoBehaviour, UnityEngine.Advertisements.IUnityAdsListener
 {
-    private InterstitialAd interstitial;
+    string GameID = "4403385";
     public static AdManager instance;
 
     private void Awake()
     {
-        if(instance==null)
+        if(instance!=null && instance!=this)
+        {
+            Destroy(gameObject);
+        }
+        else
         {
             instance = this;
         }
+
+
+        Advertisement.AddListener(this);
+        Advertisement.Initialize(GameID, true);
+    }
+  
+    public void ShowAd()
+    {
+        if (Advertisement.IsReady("Android_Interstitial"))
+            Advertisement.Show("Android_Interstitial");
         else
+            Debug.Log("Ad Not ready");
+    }
+
+    public void OnUnityAdsDidError(string message)
+    {
+        Debug.LogError($"{message}");
+    }
+
+    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+    {
+        switch (showResult)
         {
-            Destroy(this.gameObject);
-            return;
+            case ShowResult.Finished:
+             
+                break;
+            case ShowResult.Skipped:
+                break;
+                
+            case ShowResult.Failed:
+               
+                break;
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void OnUnityAdsDidStart(string placementId)
     {
-        MobileAds.Initialize("ca-app-pub-3229095087295045~5306439717"); 
+        // Debug.Log("Ad Started");
     }
 
-
-    public void RequestInterstitial()
+    public void OnUnityAdsReady(string placementId)
     {
-        string adUnitId = "ca-app-pub-3229095087295045/4474566162";
-        if(this.interstitial!=null)
-        {
-            this.interstitial.Destroy();
-        }
-        this.interstitial = new InterstitialAd(adUnitId);
-        AdRequest request = new AdRequest.Builder().Build();
-        this.interstitial.LoadAd(request);
-    }
-
-    public void ShowInterstitial()
-    {
-        if(this.interstitial.IsLoaded())
-        {
-            this.interstitial.Show();
-            Debug.Log("Interstitial AD Shown");
-
-        }
-        else
-        {
-            Debug.Log("Interstitial AD is not ready yet");
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Debug.Log("Ad Ready");
     }
 }

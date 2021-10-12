@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     {
         AudioSystem.Singleton.PlaySound($"BackGround_{Random.Range(1,3)}", this.gameObject);
         GameOverDisplay.SetActive(false);
-        AdManager.instance.RequestInterstitial();
+        //AdManager.instance.RequestInterstitial();
         BallRb = this.GetComponent<Rigidbody>();
         BallRb.useGravity = true;
     }
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
         Gameover = true;
         AudioSystem.Singleton.StopSound(this.gameObject);
         AudioSystem.Singleton.PlaySound("GameOver", this.gameObject);
-        AdManager.instance.ShowInterstitial();
+        AdManager.instance.ShowAd();
         BallRb.isKinematic = true;
         if(Score>PlayerPrefs.GetInt("HighScore",0))
         {
